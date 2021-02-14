@@ -194,7 +194,7 @@ public class EchoController : ControllerBase
 * Test the behaviour by running the application and hitting the URL https://localhost:49155/api/echo/hello. Response returned _olleh_ as expected.
 
 ### Disabling the Feature Flag
-* If we disable the flag by settign its value to `false`:
+* If we disable the flag by setting its value to `false`:
 ````json
 {
   "FeatureFlags": {
@@ -223,6 +223,7 @@ Instead of just `true`/`false`, Microsoft.FeatureManagement.AspNetCore provides 
 [Read more here](https://github.com/microsoft/FeatureManagement-Dotnet)
 
 ## Next Steps
+* Code for this article is available at: https://github.com/iSatishYadav/UsingFeatureFlagsInMicroservices
 * https://docs.microsoft.com/en-us/dotnet/architecture/cloud-native/feature-flags
 * https://launchdarkly.com/blog/what-are-feature-flags
 * https://www.cloudbees.com/feature-flags
