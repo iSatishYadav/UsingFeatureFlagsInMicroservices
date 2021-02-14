@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsingFeatureFlagsInMicroservices", "UsingFeatureFlagsInMicroservices\UsingFeatureFlagsInMicroservices.csproj", "{67E44FA7-D6BE-462D-949D-672DB08A8C3D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{AF8021D1-F0E0-43E0-A05A-A6D7EDE5E52D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{D6CFDED6-E705-495A-8D33-AFCE19399CCD}"
+	ProjectSection(SolutionItems) = preProject
+		assets\images\{0238B5F4-C68C-4D84-ABC7-E8C780ACB1B8}.png = assets\images\{0238B5F4-C68C-4D84-ABC7-E8C780ACB1B8}.png
+		assets\images\{107CADDA-ADA0-4FD2-B5A2-5EA9A75DDF72}.png = assets\images\{107CADDA-ADA0-4FD2-B5A2-5EA9A75DDF72}.png
+		assets\images\{151C4EE1-96D4-496A-9164-1D1914971763}.png = assets\images\{151C4EE1-96D4-496A-9164-1D1914971763}.png
+		assets\images\{22EF2C0C-F18D-4A18-83B5-41A6C6A4F676}.png = assets\images\{22EF2C0C-F18D-4A18-83B5-41A6C6A4F676}.png
+		assets\images\{2E78AAC5-631B-47FF-9F31-B45FF004192B}.png = assets\images\{2E78AAC5-631B-47FF-9F31-B45FF004192B}.png
+		assets\images\{4B4D540C-1BB6-43FB-9F70-AE8861C5F80F}.png = assets\images\{4B4D540C-1BB6-43FB-9F70-AE8861C5F80F}.png
+		assets\images\{519A45BB-BC18-48C6-B01D-D6CA2D3B8312}.png = assets\images\{519A45BB-BC18-48C6-B01D-D6CA2D3B8312}.png
+		assets\images\{60285B97-7C0F-4BBC-8D09-F4E1EB8B7C9C}.png = assets\images\{60285B97-7C0F-4BBC-8D09-F4E1EB8B7C9C}.png
+		assets\images\{70C8775D-CDB0-43E4-AD2E-15134F1D7E52}.png = assets\images\{70C8775D-CDB0-43E4-AD2E-15134F1D7E52}.png
+		assets\images\{842E0FF8-36FA-4A99-97DE-24B92E9FC8C9}.png = assets\images\{842E0FF8-36FA-4A99-97DE-24B92E9FC8C9}.png
+		assets\images\{8F7D438E-06BB-4046-8CE2-78D50F07A55E}.png = assets\images\{8F7D438E-06BB-4046-8CE2-78D50F07A55E}.png
+		assets\images\{90ED9644-2299-4DE9-93BE-0204D9164437}.png = assets\images\{90ED9644-2299-4DE9-93BE-0204D9164437}.png
+		assets\images\{9CB6212F-43E3-484C-8F6C-7916EA4748CC}.png = assets\images\{9CB6212F-43E3-484C-8F6C-7916EA4748CC}.png
+		assets\images\{CD6C82D6-0D57-4C4B-B5C5-B6D2890DD90E}.png = assets\images\{CD6C82D6-0D57-4C4B-B5C5-B6D2890DD90E}.png
+		assets\images\{CF75F039-F121-495A-9CEE-E6E3566273A0}.png = assets\images\{CF75F039-F121-495A-9CEE-E6E3566273A0}.png
+		assets\images\{E1E3406F-50B8-48D2-8980-BA5A025C19EC}.png = assets\images\{E1E3406F-50B8-48D2-8980-BA5A025C19EC}.png
+		assets\images\{ECA8294F-253A-4A7E-85D4-F161B3FA18DC}.png = assets\images\{ECA8294F-253A-4A7E-85D4-F161B3FA18DC}.png
+		assets\images\{ED38054E-DE4F-46E5-B750-ECF9DA40B444}.png = assets\images\{ED38054E-DE4F-46E5-B750-ECF9DA40B444}.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0D50DD89-D25E-4001-BF77-09720FF11B2F}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{67E44FA7-D6BE-462D-949D-672DB08A8C3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67E44FA7-D6BE-462D-949D-672DB08A8C3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67E44FA7-D6BE-462D-949D-672DB08A8C3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67E44FA7-D6BE-462D-949D-672DB08A8C3D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D6CFDED6-E705-495A-8D33-AFCE19399CCD} = {AF8021D1-F0E0-43E0-A05A-A6D7EDE5E52D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CE4D1B19-8136-41FE-BF7B-D18B75ADC718}
+	EndGlobalSection
+EndGlobal

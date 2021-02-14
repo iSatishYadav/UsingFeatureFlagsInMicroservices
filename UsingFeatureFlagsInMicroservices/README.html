@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Using Feature Flags aka Feature Toggles in Microservices and DevOps</title>
+</head>
+<body>
+
+    <h1 id="using-feature-flags-aka-feature-toggles-in-microservices-and-devops">Using <code>Feature Flags</code> aka <code>Feature Toggles</code> in Microservices and DevOps</h1>
+<h2 id="whats-a-feature-flagfeature-toggle">What's a Feature Flag/Feature Toggle</h2>
+<p>Cloud Native Microservices and DevOps are much about speed and agility. Users expect rapid responsiveness, innovative features, and zero downtime. Feature flags are a modern deployment technique that helps increase agility for cloud-native applications. They enable you to deploy new features into a production environment, but restrict their availability. With the flick of a switch, you can activate a new feature for specific users without restarting the app or deploying new code. They separate the release of new features from their code deployment.</p>
+<p>-<a href="https://docs.microsoft.com/en-us/dotnet/architecture/cloud-native/feature-flags">Microsoft Cloud Native Application Architecture Guide</a></p>
+<p><a href="https://launchdarkly.com/blog/what-are-feature-flags">Launch Darky</a>, a popular Feature Management company defines Feature Flags as:</p>
+<blockquote>
+<p>A feature flag is a software development process used to enable or disable functionality remotely without deploying code.</p>
+</blockquote>
+<p>New features can be deployed without making them visible to users. Feature flags help decouple deployment from release letting you manage the full lifecycle of a feature.</p>
+<p>Feature Flags aks Feature Toggles as <a href="https://www.martinfowler.com/articles/feature-toggles.html">Martin Fowler</a> explains:</p>
+<blockquote>
+<p>Feature Toggles (often also refered to as Feature Flags) are a powerful technique, allowing teams to modify system behavior without changing code.</p>
+</blockquote>
+<p>They fall into various usage categories, and it's important to take that categorization into account when implementing and managing toggles. Toggles introduce complexity. We can keep that complexity in check by using smart toggle implementation practices and appropriate tools to manage our toggle configuration, but we should also aim to constrain the number of toggles in our system.</p>
+<h2 id="why-feature-flags">Why Feature Flags?</h2>
+<p>Some of the use cases, as <a href="https://www.cloudbees.com/feature-flags">CloudBees</a> aptly lists:</p>
+<h3 id="separating-deployment-from-feature-roll-out">Separating Deployment From Feature Roll-out:</h3>
+<p>Deploying code carries what I’ll call technical risk.  Software might crash or bugs might emerge.  Deploying features carries user-related risk.  Users might hate the new features, or you might have account management issues, for instance.</p>
+<p>Traditionally, you just absorb all this risk at once.  With feature flags, you can separate these risks.  You put the new code into production, see how that goes, and then turn the features on later once they’re settled from a technical perspective.</p>
+<h3 id="testing-in-production">Testing in Production</h3>
+<p>Conventional wisdom has always held that you don’t test in production.
+But Facebook, Netflix, and others giant companies couldn’t possibly recreate their production environments for test, so they have to run QA in production.  And in doing so, they’ve proved that there’s an awful lot of value to the activity.</p>
+<p>So when using feature flags, you can de-risk deploying functionality whose production behavior is unknown to you.  Of course, you always want to test everything you can as early as you can.  But it’s nice to have options.</p>
+<h3 id="turning-things-off-with-a-kill-switch">Turning Things Off With a Kill Switch</h3>
+<p>Just as you can use feature flags to increase the number of users that see a feature, you can also go in the opposite direction.  You can decrease the number seeing it, including decreasing it immediately to zero with a conceptual kill switch.</p>
+<h3 id="canary-launches">Canary Launches</h3>
+<p>With a canary release, you introduce the new code gradually to your user base. If there is an issue, you can find out with only a fraction of the user base seeing it, rather than everyone inundating you at once with support requests.</p>
+<h3 id="running-experiments">Running Experiments</h3>
+<p>Using feature flags to run production experiments.  The easiest one of these to explain is the A/B test.</p>
+<p>With an A/B test, you go to production with two different versions of something to see which does the best.  For instance, perhaps you run an e-commerce site, and you want to see whether a green or red “buy” button results in more likes.  You can deploy both buttons and use a feature flag to split your user base in half and see which button performs the best.</p>
+<h2 id="let-me-see-some-code">Let me see some code</h2>
+<p>Enough with the theory, let's dive into action.
+For this article we're creating an .NET Core (well, .NET 5 technically) Miroservice.</p>
+<h3 id="create-a-new-project">Create a new Project.</h3>
+<ul>
+<li><p>Let's create a new ASP.NET Core API Project with .NET 5 and Docker Support.
+<img src="../assets/images/%7BECA8294F-253A-4A7E-85D4-F161B3FA18DC%7D.png" alt="{E C A8294 F 253 A 4 A7 E 85 D4 F161 B3 F A18 D C}" />
+<img src="../assets/images/%7B151C4EE1-96D4-496A-9164-1D1914971763%7D.png" alt="{151 C4 E E1 96 D4 496 A 9164 1 D1914971763}" /></p>
+</li>
+<li><p>The initial project structure looks like this:
+<img src="../assets/images/%7BCD6C82D6-0D57-4C4B-B5C5-B6D2890DD90E%7D.png" alt="{C D6 C82 D6 0 D57 4 C4 B B5 C5 B6 D2890 D D90 E}" /></p>
+</li>
+</ul>
+<h3 id="add-a-new-feature">Add a new Feature</h3>
+<p>Now we'll add a new feature in our Microservice which <code>echo</code>s the reverse of content received.
+e.g. If we say <em>hello</em>, the Microservice should return <em>olleh</em>.</p>
+<ul>
+<li><p>Add a new Controller named <code>EchoController</code>. Choose Empty, we'll write all the code we need from scratch.
+<img src="../assets/images/%7B70C8775D-CDB0-43E4-AD2E-15134F1D7E52%7D.png" alt="{70 C8775 D C D B0 43 E4 A D2 E 15134 F1 D7 E52}" /></p>
+</li>
+<li><p>Add following super complex code to the Echo</p>
+</li>
+</ul>
+<pre><code class="language-csharp">using Microsoft.AspNetCore.Mvc;
+using Microsoft.FeatureManagement;
+using Microsoft.FeatureManagement.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace UsingFeatureFlagsInMicroservices.Controllers
+{
+    [Route(&quot;api/[controller]&quot;)]
+    [ApiController]
+    public class EchoController : ControllerBase
+    {      
+        [HttpGet(&quot;{input}&quot;)]        
+        public async Task&lt;IActionResult&gt; Get(string input)
+        {
+            return Ok(new string(input.Reverse().ToArray())); 
+        }
+    }
+}
+
+</code></pre>
+<p>The code takes a <code>string</code>, reverses it and sends it as <code>HTTP 200</code>.</p>
+<h3 id="add-feature-management">Add Feature Management</h3>
+<p>We can implement a feature management on own, however why to re-invent the wheel when someone else has done it.</p>
+<p>We'll use <a href="https://www.nuget.org/packages/Microsoft.FeatureManagement.AspNetCore">Microsoft.FeatureManagement.AspNetCore</a> for our Microservice.</p>
+<ul>
+<li>Add the package
+<img src="../assets/images/%7B0A10C8A6-74EB-4942-B039-2CCB234BBB7C%7D.png" alt="{0 A10 C8 A6 74 E B 4942 B039 2 C C B234 B B B7 C}" /></li>
+</ul>
+
+
+</body>
+</html>
